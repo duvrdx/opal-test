@@ -1,0 +1,30 @@
+{
+  "user_attributes": {
+    "user@recomb.com.br": {
+      "tenants": ["recomb"]
+    },
+    "user@acme.com": {
+      "tenants": ["acme"]
+    },
+    "admin@recomb.com.br": {
+      "tenants": ["acme", "recomb"]
+    },
+    "user@amazon.com.br": {
+      "tenants": ["amazon"]
+    }
+  },
+  "resource_attributes": {
+    "document1": {
+      "type": "document",
+      "tenants": ["acme", "recomb"],
+      "confidential": true,
+      "owners": ["admin@recomb.com.br"]
+    },
+    "document2": {
+      "type": "document",
+      "tenants": ["acme", "recomb"],
+      "confidential": false,
+      "owners": ["user@recomb.com.br"]
+    }
+  }
+}
