@@ -4,25 +4,21 @@ import future.keywords.if
 import future.keywords.in
 
 default can_read_document := false
-
 default can_write_document := false
 
-is_document if {
-	resource := data.resource_attributes[input.resource]
+is_document(resource) if {
 	resource.type == "document"
 }
 
-is_owner if {
-	resource := data.resource_attributes[input.resource]
-	input.user in resource.owners
+is_owner(user, resource) if {
+	user in resource.owners
 }
 
-is_confidential if {
-	resource := data.resource_attributes[input.resource]
+is_confidential(resource) if {
 	resource.confidential
 }
 
-is_tenant if {
+is_tenant(user, resource) if {
 	user := data.user_attributes[input.user]
 	resource := data.resource_attributes[input.resource]
 
@@ -31,20 +27,23 @@ is_tenant if {
 }
 
 can_read_document if {
-	is_tenant
-	is_document
+	user := data.user_attributes[input.user]
+	resource := data.resource_attributes[input.resource]
 
-	not is_confidential
+	is_tenant(user, resource)
+	is_document(resource)
+
+	not is_confidential(resource)
 }
 
 can_read_document if {
-	is_tenant
-	is_document
-	is_owner
+	is_tenant(user, resource)
+	is_document(resource)
+	is_owner(user, resource)
 }
 
 can_write_document if {
-	is_tenant
-	is_document
-	is_owner
+	is_tenant(user, resource)
+	is_document(resource)
+	is_owner(user, resource)
 }
