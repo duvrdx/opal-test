@@ -34,12 +34,18 @@ can_read_document if {
 }
 
 can_read_document if {
+	user := data.user_attributes[input.user]
+	resource := data.resource_attributes[input.resource]
+
 	is_tenant(user, resource)
 	is_document(resource)
 	is_owner(user, resource)
 }
 
 can_write_document if {
+	user := data.user_attributes[input.user]
+	resource := data.resource_attributes[input.resource]
+	
 	is_tenant(user, resource)
 	is_document(resource)
 	is_owner(user, resource)
