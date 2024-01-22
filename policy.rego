@@ -19,9 +19,6 @@ is_confidential(resource) if {
 }
 
 is_tenant(user, resource) if {
-	user := data.user_attributes[input.user]
-	resource := data.resource_attributes[input.resource]
-
 	some user_tenant in user.tenants
 	user_tenant in resource.tenants
 }
