@@ -2,7 +2,7 @@ package app.rbac
 
 default allow := false
 
-allow {
+allow if {
 	input.user == "bob"
 }
 
