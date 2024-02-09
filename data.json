@@ -1,31 +1,90 @@
 {
-  "user_attributes": {
-    "user@recomb.com.br": {
-      "tenants": ["recomb"]
+  "users": {
+    "alice": {
+      "roles": ["admin"],
+      "location": {
+        "country": "US",
+        "ip": "8.8.8.8"
+      }
     },
-    "user@acme.com": {
-      "tenants": ["acme"]
+    "bob": {
+      "roles": ["employee", "billing"],
+      "location": {
+        "country": "US",
+        "ip": "8.8.8.8"
+      }
     },
-    "admin@recomb.com.br": {
-      "tenants": ["acme", "recomb"]
+     "sunil": {
+      "roles": ["guest"],
+      "location": {
+        "country": "US",
+        "ip": "8.8.8.8"
+      }
     },
-    "user@amazon.com.br": {
-      "tenants": ["amazon"]
+    "eve": {
+      "roles": ["customer"],
+      "location": {
+        "country": "US",
+        "ip": "8.8.8.8"
+      }
     }
   },
-  
-  "resource_attributes": {
-    "document1": {
-      "type": "document",
-      "tenants": ["acme", "recomb"],
-      "confidential": true,
-      "owners": ["admin@recomb.com.br"]
-    },
-    "document2": {
-      "type": "document",
-      "tenants": ["acme", "recomb"],
-      "confidential": false,
-      "owners": ["user@recomb.com.br"]
-    }
+  "role_permissions": {
+    "customer": [
+      {
+        "action": "read",
+        "type": "dog"
+      },
+      {
+        "action": "read",
+        "type": "cat"
+      },
+      {
+        "action": "adopt",
+        "type": "dog"
+      },
+      {
+        "action": "adopt",
+        "type": "cat"
+      }
+    ],
+    "employee": [
+      {
+        "action": "read",
+        "type": "dog"
+      },
+      {
+        "action": "read",
+        "type": "cat"
+      },
+      {
+        "action": "update",
+        "type": "dog"
+      },
+      {
+        "action": "update",
+        "type": "cat"
+      }
+    ],
+    "billing": [
+      {
+        "action": "read",
+        "type": "finance"
+      },
+      {
+        "action": "update",
+        "type": "finance"
+      }
+    ],
+    "guest": [
+     {
+       "action": "read",
+       "type": "cat"
+     },
+     {
+       "action": "read",
+       "type": "finance"
+     }
+    ]
   }
 }
